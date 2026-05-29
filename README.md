@@ -62,3 +62,140 @@ O projeto utiliza o broker público:
 
 ```txt
 broker.hivemq.com
+```
+
+Porta utilizada pelo ESP32:
+
+```txt
+1883
+```
+
+Os tópicos MQTT utilizados são:
+
+```txt
+iluminacao/luminosidade
+iluminacao/led
+iluminacao/intensidade
+```
+
+### Tópicos publicados
+
+| Tópico | Descrição |
+|---|---|
+| `iluminacao/luminosidade` | Publica o valor lido pelo sensor LDR |
+| `iluminacao/led` | Publica o estado do LED: OFF, BAIXA, MEDIA ou ALTA |
+| `iluminacao/intensidade` | Publica o valor da intensidade do LED entre 0 e 255 |
+
+Para visualizar todas as mensagens do projeto em um cliente MQTT, pode-se assinar o tópico:
+
+```txt
+iluminacao/#
+```
+
+## Como executar o projeto no Wokwi
+
+1. Acesse o projeto no Wokwi:
+
+```txt
+https://wokwi.com/projects/465130387961799681
+```
+
+2. Clique em **Start Simulation**.
+
+3. Aguarde a conexão com o Wi-Fi e com o broker MQTT.
+
+4. Altere a luminosidade no controle do sensor LDR.
+
+5. Observe o LED mudando de intensidade conforme a luminosidade.
+
+6. Abra um cliente MQTT, como o MQTTX Web, para visualizar as mensagens publicadas.
+
+## Como testar no MQTTX Web
+
+1. Acesse o MQTTX Web:
+
+```txt
+https://mqttx.app/web-client
+```
+
+2. Configure a conexão:
+
+```txt
+Name: Projeto IoT Isabella
+Protocol: wss://
+Host: broker.hivemq.com
+Port: 8884
+Path: /mqtt
+Client ID: Notebook_Isabella_2026_01
+Username: vazio
+Password: vazio
+SSL/TLS: ligado
+```
+
+3. Clique em **Connect**.
+
+4. Crie uma nova assinatura com o tópico:
+
+```txt
+iluminacao/#
+```
+
+5. Rode o projeto no Wokwi e acompanhe as mensagens recebidas.
+
+## Estrutura do repositório
+
+```txt
+.
+├── sketch.ino
+├── diagram.json
+├── libraries.txt
+└── README.md
+```
+
+## Arquivos
+
+- `sketch.ino`: código-fonte principal do ESP32.
+- `diagram.json`: estrutura do circuito montado no Wokwi.
+- `libraries.txt`: bibliotecas utilizadas no projeto.
+- `README.md`: documentação do projeto.
+
+## Resultados esperados
+
+Ao executar o projeto, espera-se que:
+
+- o ESP32 conecte-se ao Wi-Fi simulado;
+- o ESP32 conecte-se ao broker MQTT;
+- o sensor LDR leia a luminosidade ambiente;
+- o LED varie sua intensidade automaticamente;
+- os dados sejam publicados nos tópicos MQTT;
+- as mensagens sejam visualizadas em um cliente MQTT externo.
+
+Exemplo de mensagens publicadas:
+
+```txt
+iluminacao/luminosidade → 610
+iluminacao/led → ALTA
+iluminacao/intensidade → 226
+```
+
+## Repositório do projeto
+
+```txt
+https://github.com/Bellacmeireles/iluminacao-publica-inteligente-iot/tree/main
+```
+
+## Link do projeto no Wokwi
+
+```txt
+https://wokwi.com/projects/465130387961799681
+```
+
+## Autora
+
+**Isabella Cabral Meireles**  
+Universidade Presbiteriana Mackenzie  
+Disciplina: Objetos Inteligentes Conectados
+
+## Licença
+
+Projeto desenvolvido para fins acadêmicos.
